@@ -1,0 +1,25 @@
+[project]
+name = "mapc"
+version = "1.0.0"
+description = "ONVIF camera discovery and management with interactive site maps, coverage visualization, and ONVIF/RTSP snapshot previews."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.0",
+    "lxml>=5",
+    "onvif-python>=0.2.11",
+    "pydantic>=2.13.5",
+    "pydantic-settings>=2.15.0",
+    "sqlmodel>=0.0.42",
+    "fastapi>=0.141.1",
+    "uvicorn>=0.52.4",
+    "argon2-cffi>=25.1.0",
+    "pillow>=12.1.0",
+]
+
+[project.scripts]
+mapc = "mapc.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"

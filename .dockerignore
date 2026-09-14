@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+.venv
+*.db
+*.db-*
+
+.agents
+.codex
+__pycache__
+.ruff_cache
+frontend/node_modules
+frontend/test-results
+frontend/playwright-report

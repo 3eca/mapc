@@ -1,0 +1,10 @@
+services:
+  mapc:
+    image: mapc
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${MAPC_WEB_PORT:-8080}:8080"
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./data:/data
