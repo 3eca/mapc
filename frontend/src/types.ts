@@ -17,6 +17,8 @@ export interface Camera {
   streams: Stream[];
   error?: string;
   already_exists?: boolean;
+  username?: string;
+  password?: string;
 }
 export interface SiteMap {
   id: number;

@@ -1443,3 +1443,5 @@ td summary {
 
 .map-content { display: flex; flex: 1; min-height: 0; flex-direction: column; }
 .map-content[hidden] { display: none; }
+
+.scan-credentials code { white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; }

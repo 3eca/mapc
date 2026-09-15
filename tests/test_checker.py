@@ -24,6 +24,8 @@ class CheckerTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result["onvif"], [])
         self.assertEqual(len(result["errors"]), 2)
         self.assertIn("disabled", result["errors"][0]["error"])
+        self.assertNotIn("password", result["errors"][0])
+        self.assertNotIn("username", result["errors"][0])
         self.assertEqual(result["errors"][1]["open_ports"], [554])
 
     async def test_success_after_failed_credentials(self):
@@ -37,7 +39,7 @@ class CheckerTests(unittest.IsolatedAsyncioTestCase):
             new=AsyncMock(side_effect=[{"error": "Authentication failed"}, camera]),
         ) as attempt:
             result = await checker.run()
-        self.assertEqual(result["onvif"], [camera])
+        self.assertEqual(result["onvif"], [{**camera, "username": "admin", "password": "b"}])
         self.assertEqual(result["errors"], [])
         self.assertEqual(attempt.await_count, 2)
 
@@ -74,4 +76,4 @@ class CheckerTests(unittest.IsolatedAsyncioTestCase):
         ) as attempt:
             result = await checker.run()
         attempt.assert_awaited_once_with("192.0.2.1", 8081, "admin", "test")
-        self.assertEqual(result["onvif"], [camera])
+        self.assertEqual(result["onvif"], [{**camera, "username": "admin", "password": "test"}])

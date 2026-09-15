@@ -210,7 +210,7 @@ class Checker(BaseModel):
                 for username in usernames:
                     result = await self._attempt(host, port, username, password)
                     if not result.get("error"):
-                        return result
+                        return {**result, "username": username, "password": password}
                     message = f"Port {port}: {result['error']}"
                     if message not in errors:
                         errors.append(message)

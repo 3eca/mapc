@@ -167,6 +167,7 @@ export function ScanPanel({
                 <th>Protocol</th>
                 <th>Model / manufacturer</th>
                 <th>Details</th>
+                <th>Verified credentials</th>
                 <th>Result</th>
                 <th />
               </tr>
@@ -208,6 +209,18 @@ export function ScanPanel({
                             </p>
                           ))}
                         </details>
+                      )}
+                    </td>
+                    <td>
+                      {!c.error && c.username !== undefined && c.password !== undefined ? (
+                        <div className="scan-credentials">
+                          <small>Username</small>
+                          <code>{c.username}</code>
+                          <small>Password</small>
+                          <code>{c.password || "(empty)"}</code>
+                        </div>
+                      ) : (
+                        <small>{c.error ? "Not verified" : "Rescan to retrieve credentials"}</small>
                       )}
                     </td>
                     <td>
